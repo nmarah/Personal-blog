@@ -17,10 +17,10 @@
         <div class="mb-3">
             <label for="parent_id" class="form-label">Catergory parent</label>
             <select name="parent_id" id="parent_id" class="form-control">
+                 <option value="{{null}}">no parent</option>
                 @foreach ($parents as $parent)
-                <option value="{{null}}">no parent</option>
+               
                 <option value="{{$parent->id}}">{{$parent->name}}</option>
-
                 @endforeach
             </select>
         </div>

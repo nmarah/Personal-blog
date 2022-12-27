@@ -20,7 +20,7 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td><img src="{{Storage::disk('local')->url($info->image) }}" width="50" height="50">{{$info->image }}</td>
+                <td><img src="{{Storage::disk('local')->url($info->image) }}" width="50" height="50"></td>
                 
             </tr>
             <tr>

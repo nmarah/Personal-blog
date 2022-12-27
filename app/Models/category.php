@@ -12,4 +12,7 @@ class category extends Model
     protected $guarded =['id'];
     protected $table='categories';
     public $timestamps = true;
+   
+  
+
 }

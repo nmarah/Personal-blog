@@ -27,7 +27,7 @@ class CategoriesController extends Controller
 
     public function create()
     {
-        $parents = category::orderBy('name', 'ASC')->get();
+        $parents = category::get()->where('parent_id', '=', null);
         $about = about::get();
         return view('admin.create', [
             'parents' => $parents,

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,9 +44,9 @@
                 </a></h1>
             <nav id="colorlib-main-menu" role="navigation">
                 <ul>
-                    <li class="home  "><a href="{{ route('index')}}">Home</a></li>
-                    <li class="about "><a href="{{ route('about')}}">About</a></li>
-                    <li class="contact "><a href="{{ route('contact')}}">Contact</a></li>
+                    <li class="home @if(Route::is('index')) colorlib-active @endif "><a href="{{ route('index')}}">Home</a></li>
+                    <li class="about  @if(Route::is('about')) colorlib-active @endif"><a href="{{ route('about')}}">About</a></li>
+                    <li class="contact  @if(Route::is('contact')) colorlib-active @endif"><a href="{{ route('contact')}}">Contact</a></li>
                 </ul>
             </nav>
 
@@ -59,19 +60,11 @@
                      All rights reserved | This template is made with <i class="icon-heart"
                         aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a> --}}
                 <ul>
-                    @foreach($about as $info)
-                    <?php
-                     $facebook = $about->facebook; 
-                     $twitter = $about->twitter;
-                     $linkedin = $about->linkedin;
-                     $instagram =  $about->instagram;
-                    
-                    ?> 
-                   @endforeach
-                    <li><a href="{{$facebook}}"><i class="icon-facebook"></i></a></li>
-                    <li><a href="{{$twitter}}"><i class="icon-twitter"></i></a></li>
-                    <li><a href="{{$instagram}}"><i class="icon-instagram"></i></a></li>
-                    <li><a href="{{$linkedin}}"><i class="icon-linkedin"></i></a></li>
+                
+                    <li><a href="{{$about->facebook}}"><i class="icon-facebook"></i></a></li>
+                    <li><a href="{{$about->twitter}}"><i class="icon-twitter"></i></a></li>
+                    <li><a href="{{$about->instagram}}"><i class="icon-instagram"></i></a></li>
+                    <li><a href="{{$about->linkedin}}"><i class="icon-linkedin"></i></a></li>
                     
                 </ul>
             </div>
@@ -80,24 +73,26 @@
         @yield('contant')
 
 
-        @hasSection('footer')
+        @if($footer ?? false)
             <footer class="ftco-footer ftco-bg-dark ftco-section">
                 <div class="container px-md-5">
                     <div class="row mb-5">
-                        @section('footer')
+                        
                         <div class="col-md">
                             <div class="ftco-footer-widget mb-4 ml-md-4">
                                 <h2 class="ftco-heading-2">Category</h2>
                                 <ul class="list-unstyled categories">
-                                    <li><a href="#">Photography <span>(6)</span></a></li>
-                                    <li><a href="#">Fashion <span>(8)</span></a></li>
-                                    <li><a href="#">Technology <span>(2)</span></a></li>
-                                    <li><a href="#">Travel <span>(2)</span></a></li>
+                                    
+                                   @foreach ($categoriesARR as $categoriesARR )
+                              
+                                    <li><a href="#">{{$categoriesARR['name']}} <span>({{$categoriesARR['count']}})</span></a></li>                                        
+                                    @endforeach
+                                    
                                 </ul>
                             </div>
                         </div>
                         <div class="col-md">
-                            <div class="ftco-footer-widget mb-4">
+                            {{-- <div class="ftco-footer-widget mb-4">
                                 <h2 class="ftco-heading-2">Archives</h2>
                                 <ul class="list-unstyled categories">
                                     <li><a href="#">October 2018 <span>(6)</span></a></li>
@@ -106,24 +101,23 @@
                                     <li><a href="#">July 2018 <span>(2)</span></a></li>
                                     <li><a href="#">June 2018 <span>(7)</span></a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="col-md">
                             <div class="ftco-footer-widget mb-4">
                                 <h2 class="ftco-heading-2">Have a Questions?</h2>
                                 <div class="block-23 mb-3">
                                     <ul>
-                                        <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St.
-                                                Mountain View, San Francisco, California, USA</span></li>
-                                        <li><a href="#"><span class="icon icon-phone"></span><span
-                                                    class="text">+2 392 3929 210</span></a></li>
-                                        <li><a href="#"><span class="icon icon-envelope"></span><span
-                                                    class="text">info@yourdomain.com</span></a></li>
+                                        <li><span class="icon icon-map-marker"></span><span class="text">{{$about->address}}</span></li>
+                                        <li><span class="icon icon-phone"></span><span
+                                                    class="text">+{{$about->phone}}</span></li>
+                                        <li><span class="icon icon-envelope"></span><span
+                                                    class="text">{{$about->email}}</span></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                    @show
+                        
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -142,9 +136,9 @@
                     </div>
                 </div>
             </footer>
-   
+            @endif
     </div><!-- END COLORLIB-PAGE -->
-    @endif
+   
     <!-- loader -->
     <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
             <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4"
@@ -171,28 +165,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="{{ asset('js/google-map.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    <script>
-        let home = document.querySelector('.home');
-        let about = document.querySelector('.about');
-        let contact = document.querySelector('.contact');
-   
-        home.onclick = function() {
-            home.classList.add('colorlib-active');
-            about.classList.remove('colorlib-active');
-            contact.classList.remove('colorlib-active');
-        }
-        about.onclick = function() {
-            home.classList.remove('colorlib-active');
-            about.classList.add('colorlib-active');
-            contact.classList.remove('colorlib-active');
-        }
-        contact.onclick = function() {
-            home.classList.remove('colorlib-active');
-            about.classList.remove('colorlib-active');
-            contact.classList.add('colorlib-active');
-        }
-      
-    </script>
+  
 
 </body>
 
