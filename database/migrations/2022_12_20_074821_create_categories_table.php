@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->String('name',255);
             $table->string('title',255)->nullable();
-            $table->integer('parent_id')->nullable();
+            $table->foreign('parent_id')->references('id')->on('categories')->nullOnDelete()->change();
             $table->string('disc', 512)->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
