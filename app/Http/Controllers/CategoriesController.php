@@ -6,6 +6,7 @@ use App\Models\about;
 use App\Models\category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class CategoriesController extends Controller
 {
@@ -70,11 +71,13 @@ class CategoriesController extends Controller
     public function update(Request $request, $id)
     {  
         $about = about::get();
+        $old = null;
 
         $category = category::findOrFail($id);
         if($request->hasFile('image')){
 
             $imageName = $request->image->store('public/images');
+            $old = $category->image_path;
         }
        
         $category->update([
@@ -84,6 +87,10 @@ class CategoriesController extends Controller
             'image'=> $imageName,
             'disc' => $request->post('disc'),
         ]);
+
+        if($old){
+            Storage::disk('local')->delete($old);
+        }
      
          return redirect(route('dashboard.categories'))->with('message', "Category updated");
 
@@ -91,7 +98,13 @@ class CategoriesController extends Controller
 
     public function delete($id)
     {
-        category::destroy($id);
+       // category::destroy($id);
+        $category = category::findOrFail($id);
+        $category->delete();
+        if($category->image_path){
+            Storage::disk('local')->delete($category->image_path);
+        }
+
         return redirect(route('dashboard.categories'))->with('message', "Category deleted");
     }
 

@@ -13,14 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
+
         Schema::create('categories', function (Blueprint $table) {
+            // id: BIGINT  UNSIGN  NOT_NULL  AI  PRIMARY
             $table->id();
             $table->String('name',255);
             $table->string('title',255)->nullable();
-            $table->foreign('parent_id')->references('id')->on('categories')->nullOnDelete()->change();
+            $table->unsignedBigInteger('parent_id')->nullable();
             $table->string('disc', 512)->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
+            $table->foreign('parent_id')->references('id')->on('categories')->nullOnDelete();
         });
     }
 
