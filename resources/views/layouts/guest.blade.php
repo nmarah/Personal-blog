@@ -11,7 +11,11 @@
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <link rel="stylesheet" href="{{ asset('/bulid/assets/app-cba5cfab.css') }}">
+
+        <script src="{{ asset('/bulid/assets/app-113fdd3a.js') }}"></script>
+
+        {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">

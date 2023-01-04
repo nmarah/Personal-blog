@@ -24,16 +24,16 @@ Route::get('/',[AboutController::class,'index'])->name('index');
 Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/contact',[ContactController::class,'contact'])->name('contact');
 Route::post('/save_asks', [ContactController::class,'save_asks'] )->name('save_ask');
-Route::get('/dashboard/personaldata', [DashboardController::class, 'index'])->name('dashboard.personalData');
-Route::get('/dashboard/edit', [DashboardController::class, 'edit'])->name('dashboard.edit');
-Route::put('/dashboard/update/{id}',[DashboardController::class, 'update'])->name('dashboard.update');
-Route::get('/dashboard/categories', [CategoriesController::class, 'index'])->name('dashboard.categories');
-Route::get('/dashboard/categories/create',[CategoriesController::class,'create'])->name('dashboard.categories.create');
-Route::post('/dashboard/categories',[CategoriesController::class,'store'])->name('dashboard.categories.store');
-Route::get('/dashboard/categories/edit/{id}', [CategoriesController::class, 'edit'])->name('dashboard.categories.edit');
-Route::put('/dashboard/categories/update/{id}',[CategoriesController::class, 'update'])->name('dashboard.categories.update');
-Route::delete('/dashboard/categories/{id}',[CategoriesController::class, 'delete'])->name('dashboard.categories.delete');
-Route::get('dashboard/asks',[AskController::class,'index'])->name('dashboard.asks');
+//Route::get('/dashboard/personaldata', [DashboardController::class, 'index'])->name('dashboard.personalData');
+//Route::get('/dashboard/edit', [DashboardController::class, 'edit'])->name('dashboard.edit');
+//Route::put('/dashboard/update/{id}',[DashboardController::class, 'update'])->name('dashboard.update');
+// Route::get('/dashboard/categories', [CategoriesController::class, 'index'])->name('dashboard.categories');
+// Route::get('/dashboard/categories/create',[CategoriesController::class,'create'])->name('dashboard.categories.create');
+// Route::post('/dashboard/categories',[CategoriesController::class,'store'])->name('dashboard.categories.store');
+// Route::get('/dashboard/categories/edit/{id}', [CategoriesController::class, 'edit'])->name('dashboard.categories.edit');
+// Route::put('/dashboard/categories/update/{id}',[CategoriesController::class, 'update'])->name('dashboard.categories.update');
+// Route::delete('/dashboard/categories/{id}',[CategoriesController::class, 'delete'])->name('dashboard.categories.delete');
+//Route::get('dashboard/asks',[AskController::class,'index'])->name('dashboard.asks');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-//require __DIR__.'/dashboard.php';
+require __DIR__.'/dashboard.php';
 require __DIR__.'/articles.php';
 
 

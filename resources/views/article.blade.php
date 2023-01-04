@@ -29,12 +29,12 @@
                         <p>
                             @if($article->video)
                             <video src="{{Storage::disk('local')->url($article->video)}}" controls></video>
+                            @elseif ($article->file)
+                            <iframe src="{{ Storage::disk('local')->url($article->file) }}" style="width:600px; height:500px;" frameborder="0"></iframe>
+                            {{-- <embed src="{{ Storage::disk('local')->url($article->file) }}" type="application/pdf" width="100%" height="600px" /> --}}
+
                             @elseif($article->image)
                             <img src="{{ Storage::disk('local')->url($article->image) }}" alt="" class="img-fluid"> 
-                            @elseif ($article->file)
-                            {{-- <iframe src="{{ Storage::disk('local')->url($article->file) }}" style="width:600px; height:500px;" frameborder="0"></iframe> --}}
-                            <embed src="{{ Storage::disk('local')->url($article->file) }}" type="application/pdf" width="100%" height="600px" />
-
                             @endif
                         </p>
                     </div>

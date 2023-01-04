@@ -186,7 +186,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     </div>
                     <div class="info">
                     
-                        <a href="{{route('about')}}" class="d-block">{{$about->full_name}}</a>
+                        <a href="{{route('profile.edit')}}" class="d-block">{{Auth::user()->name}}</a>
+                        {{-- <span><a id="logout" href="{{route('logout')}}">Log out</a></span> --}}
                         
                        
                     </div>
@@ -316,8 +317,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     </div>
     <!-- ./wrapper -->
 
+<form action="{{route('logout')}}" method="post" id="logout-form" class="d-none">
 
-
+    @csrf
+</form>
 
     <!-- REQUIRED SCRIPTS -->
 
@@ -327,6 +330,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+    {{-- <script>
+        $('#logout').on('click',function)
+    </script> --}}
 
 </body>
 
