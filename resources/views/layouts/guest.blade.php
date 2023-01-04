@@ -11,9 +11,9 @@
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Scripts -->
-        <link rel="stylesheet" href="{{ asset('build/assets/app-cba5cfab.css') }}">
+        <link rel="stylesheet" href="{{ asset('/build/assets/app-cba5cfab.css') }}">
 
-        <script src="{{ asset('build/assets/app-113fdd3a.js') }}"></script>
+        <script src="{{ asset('/build/assets/app-113fdd3a.js') }}"></script>
 
         {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     </head>
