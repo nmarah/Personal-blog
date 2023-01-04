@@ -39,7 +39,7 @@
     <div id="colorlib-page">
         <a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
         <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-            <h1 id="colorlib-logo"><a href="{{ route('index')}}"><img src="images/logo.png" width="120" height="65" alt=""></a>
+            <h1 id="colorlib-logo"><a href="{{ route('index')}}"><img src="{{asset('images/logo.png')}}"  width="120" height="65" alt=""></a>
 
                 </a></h1>
             <nav id="colorlib-main-menu" role="navigation">
@@ -83,9 +83,9 @@
                                 <h2 class="ftco-heading-2">Category</h2>
                                 <ul class="list-unstyled categories">
                                     
-                                   @foreach ($categoriesARR as $categoriesARR )
+                                   @foreach ($categoriesARR as $category )
                               
-                                    <li><a href="#">{{$categoriesARR['name']}} <span>({{$categoriesARR['count']}})</span></a></li>                                        
+                                    <li><a href="#">{{$category->name}} <span>({{ $category->articles_count }})</span></a></li>                                        
                                     @endforeach
                                     
                                 </ul>

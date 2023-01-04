@@ -198,7 +198,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <div class="input-group" data-widget="sidebar-search">
                         <input class="form-control form-control-sidebar" type="search" placeholder="Search"
                             aria-label="Search">
-                        <div class="input-group-append">
+                        <div class="input-group-append"> 
                             <button class="btn btn-sidebar">
                                 <i class="fas fa-search fa-fw"></i>
                             </button>
@@ -233,6 +233,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <i class=""></i>
                                 <p>
                                     Categories
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard.articles') }}" class="nav-link">
+                                <i class=""></i>
+                                <p>
+                                    Articles
                                 </p>
                             </a>
                         </li>

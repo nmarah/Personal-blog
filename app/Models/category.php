@@ -13,6 +13,9 @@ class category extends Model
     protected $table='categories';
     public $timestamps = true;
    
-  
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
 
 }

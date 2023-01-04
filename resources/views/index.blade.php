@@ -40,17 +40,17 @@
                     </div>
                 </div>
                 <div class="row ">
-                    @foreach ($category as $category)
-                        @if ($category->title)
+                    @foreach ($articles as $article)
+                        @if ($article->title)
                             <div class="col-md-4">
                                 <div class="blog-entry ftco-animate">
                                     <a href="#" class="img img-2"
-                                        style="background-image: url({{ Storage::disk('local')->url($category->image) }});"></a>
+                                        style="background-image: url({{ Storage::disk('local')->url($article->image) }});"></a>
                                     <div class="text text-2 pt-2 mt-3">
                                         <span class="category mb-3 d-block"><a
-                                                href="#">{{ $category->parent_name }}</a></span>
-                                        <h3 class="mb-4"><a href="#">{{ $category->title }}</a></h3>
-                                        <p class="mb-4">{{ $category->disc }}</p>
+                                                href="#">{{ $article->category->name }}</a></span>
+                                        <h3 class="mb-4"><a href="#">{{ $article->name }}</a></h3>
+                                        <p class="mb-4">{{ $article->title }}</p>
                                         <div class="author mb-4 d-flex align-items-center">
                                             <a href="#" class="img"
                                                 style="background-image: url({{ Storage::disk('local')->url($about->image) }});"></a>
@@ -61,7 +61,7 @@
                                         </div>
                                        
                                         <div class="half">
-                                            <p><a href="#" class="btn py-2">Continue Reading <span
+                                            <p><a href="{{ route('articles.show', $article->id) }}" class="btn py-2">Continue Reading <span
                                                         class="ion-ios-arrow-forward"></span></a></p>
                                         </div>
                                     </div>
