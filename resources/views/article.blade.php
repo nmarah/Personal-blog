@@ -40,6 +40,64 @@
                     </div>
                 </div>
             </div>
+
+            <div class="pt-5 col-md-8 mt-5">
+                <h3 class="mb-5 font-weight-bold">{{$commentsCount == 0 ? '' : $commentsCount }} Comments</h3>
+                <ul class="comment-list">
+                    @foreach ($comments as $comment)
+                  <li class="comment">
+                    <div class="vcard bio">
+                        @if( $genderDetector->detect($comment->name) =='female')
+                        @php
+                        $woman = ["woman.png","woman1.png","woman2.png"];
+                    @endphp
+                        <img src="{{asset('images/'.$woman[array_rand($woman)])}}" alt="Image placeholder">                    
+                      @else
+                      @php
+                        $man = ["man.png","man1.png","man2.png","man3.png"];
+                    @endphp
+                      <img src="{{asset('images/'.$man[array_rand($man)])}}" alt="Image placeholder">
+                      @endif
+
+                    </div>
+                <div class="comment-body">
+                      <h3>{{ $comment->name }}</h3>
+                      <div class="meta">{{ $comment->created_at->format('jS M Y h:i A') }}</div>
+                      <p> {{ $comment->body }}</p>
+                      <p><a href="#" class="reply">Reply</a></p>
+                    </div>
+                  </li>
+                  @endforeach
+
+                
+                </ul>
+                <!-- END comment-list -->
+                
+                <div class="comment-form-wrap pt-5">
+                  <h3 class="mb-5">Leave a comment</h3>
+                  <form action="{{route('comments.store', $article)}}" method="POST" class="p-3 p-md-5 bg-light">
+                    @csrf
+                    <div class="form-group">
+                      <label for="name">Name *</label>
+                      <input type="text" class="form-control" name="name" id="name">
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email *</label>
+                      <input type="email" class="form-control" name="email" id="email">
+                    </div>
+                    <div class="form-group">
+                      <label for="message">Message</label>
+                      <textarea name="body" id="body" cols="30" rows="10" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        {{-- <input type="hidden" name="parent_id" value="{{ $comment->id }}"> --}}
+
+                      <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                    </div>
+
+                  </form>
+                </div>
+            </div>
         </section>
 
 

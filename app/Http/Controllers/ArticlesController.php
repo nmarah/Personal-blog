@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\about;
 use App\Models\Article;
 use App\Models\category;
+use GenderDetector\GenderDetector;
+use GenderDetector\Tests\GenderDetectorTest;
 use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
@@ -99,11 +101,25 @@ class ArticlesController extends Controller
 {
     $article = Article::find($id);
     $about = about::first();
-
+    $comments = $article->comments;
+    $commentsCount = $article->comments()->count();
+    $genderDetector = new GenderDetector();
+       // dd($genderDetector->detect('Adam'));
     return view('article',[
         'article'=>$article,
         'about'=>$about,
+        'comments'=>$comments,
+        'commentsCount'=>$commentsCount,
+        'genderDetector'=>$genderDetector,
     ]);
+
+   
+}
+
+public function showComments(Article $article)
+{
+    $comments = $article->comments;
+    return view('articles.show', compact('article', 'comments'));
 }
 
 

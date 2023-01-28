@@ -15,4 +15,9 @@ class Article extends Model
     {
         return $this->belongsTo(category::class,'category_id','id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AskController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -24,6 +25,9 @@ Route::get('/',[AboutController::class,'index'])->name('index');
 Route::get('/about',[AboutController::class,'about'])->name('about');
 Route::get('/contact',[ContactController::class,'contact'])->name('contact');
 Route::post('/save_asks', [ContactController::class,'save_asks'] )->name('save_ask');
+Route::post('/articles/{article}/comments', [CommentController::class,'store'])->name('comments.store');
+Route::get('/articles/{article}/comments', [CommentController::class,'index'])->name('comments.index');
+
 //Route::get('/dashboard/personaldata', [DashboardController::class, 'index'])->name('dashboard.personalData');
 //Route::get('/dashboard/edit', [DashboardController::class, 'edit'])->name('dashboard.edit');
 //Route::put('/dashboard/update/{id}',[DashboardController::class, 'update'])->name('dashboard.update');

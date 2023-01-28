@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="{{ asset('css/icomoon.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-    <link rel="icon" href="images/logo.png">
+<link rel="icon" href="images/logo.png">
 </head>
 
 <body>

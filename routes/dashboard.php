@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Route;
 Route::group([
     'prefix' => '/dashboard',
     'as' => 'dashboard.',
-     'middleware' => ['auth'],
+     'middleware' => ['auth','user.type'],
 ], function () {
     Route::get('/personaldata', [DashboardController::class, 'index'])->name('personalData');
     Route::get('/edit', [DashboardController::class, 'edit'])->name('edit');
